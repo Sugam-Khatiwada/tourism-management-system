@@ -1,7 +1,7 @@
-import { dbConnect } from "@/lib/db";
+import { connectDB } from "@/lib/db";
 
 export default async function Home() {
-  await dbConnect();
+  await connectDB();
 
   return (
     <main className="p-10">
