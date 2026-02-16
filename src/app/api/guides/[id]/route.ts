@@ -27,7 +27,7 @@ export async function GET(_request: Request, {params}: RouteContext) {
 
 export async function PUT(request: Request, {params}: RouteContext) {
     try {
-        await requireRole(["guide_owner"])
+        await requireRole(["guide"])
         const guideId = await params;
         const body = await request.json();
         const parseResult = await updateGuideSchema.safeParseAsync(body);
@@ -60,7 +60,7 @@ export async function PUT(request: Request, {params}: RouteContext) {
 
 export async function DELETE(request: Request, {params}: RouteContext) {
     try {
-        await requireRole(["guide_owner"])
+        await requireRole(["guide"])
         const guideId = await params;
         const deletedGuide = await GuideRepository.remove(guideId.id);
         if (!deletedGuide) {
