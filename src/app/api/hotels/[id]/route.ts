@@ -56,3 +56,24 @@ export async function PUT(request: Request, {params}: RouteContext) {
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
+
+export async function DELETE(request: Request, {params}: RouteContext) {
+    try {
+        await requireRole(["hotel_owner"])
+        const hotelId = await params;
+        const deletedHotel = await HotelRepository.remove(hotelId.id);
+        if (!deletedHotel) {
+            return NextResponse.json({ error: "Hotel not found" }, { status: 404 });
+        }
+        return NextResponse.json({ message: "Hotel deleted successfully" }, { status: 200 });
+    } catch (err) {
+        console.error(err);
+        if (err instanceof Error && err.message === "Unauthorized") {
+            return NextResponse.json({ error: err.message }, { status: 401 });
+        }
+        if (err instanceof Error && err.message === "Forbidden") {
+            return NextResponse.json({ error: err.message }, { status: 403 });
+        }
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    }
+}
