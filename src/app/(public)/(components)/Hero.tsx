@@ -12,6 +12,7 @@ export default function Hero() {
         <input
           type="text"
           placeholder="Search destination..."
+          suppressHydrationWarning
           className="border px-4 py-2 rounded w-80"
         />
         <button className="bg-blue-600 text-white px-6 py-2 rounded">
