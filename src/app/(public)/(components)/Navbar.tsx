@@ -7,8 +7,8 @@ export default function Navbar() {
 
       <div className="flex gap-6">
         <Link href="/search">Explore</Link>
-        <Link href="/auth/login">Login</Link>
-        <Link href="/auth/register" className="bg-black text-white px-4 py-2 rounded">
+        <Link href="/login">Login</Link>
+        <Link href="/register" className="bg-black text-white px-4 py-2 rounded">
           Sign Up
         </Link>
       </div>
