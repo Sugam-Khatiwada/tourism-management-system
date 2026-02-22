@@ -35,10 +35,9 @@ export default function LoginPage() {
       return;
     }
 
-    // store token
-    localStorage.setItem("token", data.token);
 
     router.push("/dashboard");
+    router.refresh();
   };
 
   return (
