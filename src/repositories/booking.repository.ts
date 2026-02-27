@@ -14,6 +14,19 @@ async function findById(id: string): Promise<IBooking | null> {
     return booking;
 }
 
+async function findByUserId(userId: string): Promise<IBooking[]> {
+    await connectDB();
+    const bookings = await Booking.find({ userId });
+    return bookings;
+}
+
+async function updateStatus(id: string, bookingStatus: string, paymentStatus: string): Promise<IBooking | null> {
+    await connectDB();
+    const booking = await Booking.findByIdAndUpdate(id, { bookingStatus, paymentStatus }, { new: true });
+    return booking;
+}
+
+
 async function update(id: string, data: UpdateBookingDto): Promise<IBooking | null> {
     await connectDB();
     const booking = await Booking.findByIdAndUpdate(id, data, { new: true });
@@ -36,6 +49,8 @@ export const BookingRepository = {
     create,
     findById,
     update,
+    updateStatus,
     get,
     remove,
+    findByUserId,
 };
