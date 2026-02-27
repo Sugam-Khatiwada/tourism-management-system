@@ -3,6 +3,7 @@ import { ZodError } from "zod";
 import { UpdateBookingDto, updateBookingSchema } from "@/validators/booking.validator";
 import { BookingRepository } from "@/repositories/booking.repository";
 import { requireRole } from "@/lib/auth";
+import { bookingService } from "@/services/booking.service";
 
 type RouteContext = {
   params: Promise<{
