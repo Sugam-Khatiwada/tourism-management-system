@@ -14,3 +14,9 @@ async function cancelBooking(id: string) {
     const booking = await BookingRepository.updateStatus(id, "cancelled", "unpaid");
     return booking;
 }
+
+export const bookingService = {
+    createBooking,
+    confirmBooking,
+    cancelBooking,
+};
