@@ -61,7 +61,7 @@ export default function LoginPage() {
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
-        <button className="bg-black text-white py-2 rounded">
+        <button className="bg-primary text-white py-2 rounded hover:bg-dark transition">
           Login
         </button>
       </form>

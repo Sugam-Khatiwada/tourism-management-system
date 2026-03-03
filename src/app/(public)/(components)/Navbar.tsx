@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="flex justify-between items-center p-6 shadow">
-      <h1 className="text-xl font-bold">TourismMS</h1>
+    <nav className="flex justify-between items-center p-6 shadow bg-white">
+      <h1 className="text-xl font-bold text-dark">TourismMS</h1>
 
-      <div className="flex gap-6">
-        <Link href="/search">Explore</Link>
-        <Link href="/login">Login</Link>
-        <Link href="/register" className="bg-black text-white px-4 py-2 rounded">
+      <div className="flex gap-6 items-center">
+        <Link href="/search" className="text-dark hover:text-primary transition">Explore</Link>
+        <Link href="/login" className="text-dark hover:text-primary transition">Login</Link>
+        <Link href="/register" className="bg-primary text-white px-4 py-2 rounded hover:bg-dark transition">
           Sign Up
         </Link>
       </div>
