@@ -41,7 +41,7 @@ export default function LoginPage() {
   };
 
   return (
-    <>
+    <div className="w-full max-w-md bg-white p-8 shadow rounded border border-neutral/30">
       <h2 className="text-2xl font-bold mb-6">Login</h2>
 
       {error && <p className="text-red-500">{error}</p>}
@@ -65,6 +65,13 @@ export default function LoginPage() {
           Login
         </button>
       </form>
-    </>
+
+      <p className="text-sm text-center mt-4 text-gray-500">
+        Don&apos;t have an account?{" "}
+        <a href="/register" className="text-primary hover:underline font-medium">
+          Register
+        </a>
+      </p>
+    </div>
   );
 }
