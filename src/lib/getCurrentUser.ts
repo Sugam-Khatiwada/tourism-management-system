@@ -10,7 +10,6 @@ export async function getCurrentUser() {
 
   try {
     const payload = verifyJwt(token);
-
     const user = await UserRepository.findById(payload.userId);
     return user;
   } catch {
