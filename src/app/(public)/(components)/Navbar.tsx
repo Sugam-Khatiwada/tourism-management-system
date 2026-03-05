@@ -1,6 +1,19 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/auth/profile")
+      .then((res) => {
+        if (res.ok) setIsLoggedIn(true);
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 bg-white/90 backdrop-blur-md shadow-sm">
       <Link href="/" className="flex items-center gap-2">
@@ -25,18 +38,29 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center gap-3">
-        <Link
-          href="/login"
-          className="text-dark font-medium text-sm hover:text-primary transition-colors px-4 py-2"
-        >
-          Log In
-        </Link>
-        <Link
-          href="/register"
-          className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-dark transition-all shadow-md hover:shadow-lg"
-        >
-          Get Started
-        </Link>
+        {isLoggedIn ? (
+          <Link
+            href="/dashboard"
+            className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-dark transition-all shadow-md hover:shadow-lg"
+          >
+            Dashboard
+          </Link>
+        ) : (
+          <>
+            <Link
+              href="/login"
+              className="text-dark font-medium text-sm hover:text-primary transition-colors px-4 py-2"
+            >
+              Log In
+            </Link>
+            <Link
+              href="/register"
+              className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-dark transition-all shadow-md hover:shadow-lg"
+            >
+              Get Started
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );
