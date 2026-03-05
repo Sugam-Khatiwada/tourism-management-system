@@ -1,18 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useAuth } from "@/providers/AuthProvider";
 
 export default function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    fetch("/api/auth/profile")
-      .then((res) => {
-        if (res.ok) setIsLoggedIn(true);
-      })
-      .catch(() => {});
-  }, []);
+  const { isLoggedIn } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 bg-white/90 backdrop-blur-md shadow-sm">

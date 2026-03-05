@@ -5,10 +5,11 @@ import Destinations from "./(components)/Destinations";
 import Testimonials from "./(components)/Testimonials";
 import CallToAction from "./(components)/CallToAction";
 import Footer from "./(components)/Footer";
+import { AuthProvider } from "@/providers/AuthProvider";
 
 export default function HomePage() {
   return (
-    <>
+    <AuthProvider>
       <Navbar />
       <Hero />
       <Features />
@@ -16,6 +17,6 @@ export default function HomePage() {
       <Testimonials />
       <CallToAction />
       <Footer />
-    </>
+    </AuthProvider>
   );
 }

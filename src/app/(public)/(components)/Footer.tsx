@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useAuth } from "@/providers/AuthProvider";
 
 export default function Footer() {
+  const { isLoggedIn } = useAuth();
   return (
     <footer className="bg-dark text-white">
       <div className="max-w-6xl mx-auto px-6 py-16">
@@ -28,7 +32,7 @@ export default function Footer() {
               <li><Link href="#destinations" className="hover:text-primary transition-colors">Destinations</Link></li>
               <li><Link href="#features" className="hover:text-primary transition-colors">Services</Link></li>
               <li><Link href="#testimonials" className="hover:text-primary transition-colors">Reviews</Link></li>
-              <li><Link href="/register" className="hover:text-primary transition-colors">Get Started</Link></li>
+              {!isLoggedIn && <li><Link href="/register" className="hover:text-primary transition-colors">Get Started</Link></li>}
             </ul>
           </div>
 

@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useAuth } from "@/providers/AuthProvider";
 
 export default function CallToAction() {
+  const { isLoggedIn } = useAuth();
   return (
     <section className="relative py-28 overflow-hidden">
       <Image
@@ -22,18 +26,29 @@ export default function CallToAction() {
           Your dream trip is just a click away.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/register"
-            className="bg-accent hover:bg-accent/85 text-white font-semibold px-10 py-4 rounded-full text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-          >
-            Create Free Account
-          </Link>
-          <Link
-            href="/login"
-            className="bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold px-10 py-4 rounded-full text-lg hover:bg-white/20 transition-all"
-          >
-            Sign In
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              href="/dashboard"
+              className="bg-accent hover:bg-accent/85 text-white font-semibold px-10 py-4 rounded-full text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            >
+              Go to Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/register"
+                className="bg-accent hover:bg-accent/85 text-white font-semibold px-10 py-4 rounded-full text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              >
+                Create Free Account
+              </Link>
+              <Link
+                href="/login"
+                className="bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold px-10 py-4 rounded-full text-lg hover:bg-white/20 transition-all"
+              >
+                Sign In
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </section>

@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useAuth } from "@/providers/AuthProvider";
 
 export default function Hero() {
+  const { isLoggedIn } = useAuth();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -31,12 +35,21 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/register"
-            className="bg-accent hover:bg-accent/85 text-white font-semibold px-8 py-4 rounded-full text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-          >
-            Start Exploring
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              href="/dashboard"
+              className="bg-accent hover:bg-accent/85 text-white font-semibold px-8 py-4 rounded-full text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            >
+              Go to Dashboard
+            </Link>
+          ) : (
+            <Link
+              href="/register"
+              className="bg-accent hover:bg-accent/85 text-white font-semibold px-8 py-4 rounded-full text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            >
+              Start Exploring
+            </Link>
+          )}
           <Link
             href="#destinations"
             className="bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold px-8 py-4 rounded-full text-lg hover:bg-white/25 transition-all"
