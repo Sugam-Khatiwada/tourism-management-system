@@ -58,7 +58,7 @@ export default function TouristDashboard() {
   return (
     <div className="space-y-8">
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-dark to-primary rounded-2xl p-8 text-white">
+      <div className="bg-linear-to-r from-dark to-primary rounded-2xl p-8 text-white">
         <h1 className="text-3xl font-bold mb-2">
           Welcome back, {user?.name || "Traveler"}! 👋
         </h1>
